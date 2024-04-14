@@ -10,11 +10,25 @@ app.use(
         next();
     }
 );
-
+app.use(express.json());
 app.use(cors());
 
 app.get('/', (request, response) => {
     response.send("Hello world!");
+});
+
+app.post('/login', (request, response) => {
+    console.log(request.body);
+    response.status(200).json( { message: "Successfully logged in!", id: 1 });
+});
+app.post('/register', (request, response) => {
+    console.log(request.body);
+    response.status(201).json({message: "Successfully logged in!", id: 1});
+});
+
+app.post('/account', (request, response) => {
+    console.log(request.body);
+    response.status(200).json({message: "Successfully logged in!", id: 1});
 });
 
 app.listen(port, () => {
