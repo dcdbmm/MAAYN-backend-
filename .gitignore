@@ -1,6 +1,7 @@
 # Default ignored files
 /.idea/
 /shelf/
+/postgres-data/
 /workspace.xml
 # Datasource local storage ignored files
 /../../../../../:\xampp\htdocs\javascript\.idea/dataSources/

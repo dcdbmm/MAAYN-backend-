@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+//const logger = require('./logger/logger');
+const registerLoginCredentials = require("./services/registerService");
+const validateLoginCredentials = require("./services/loginService");
+const {getAccountDetails, createAccountDetails, updateAccountDetails} = require("./services/accountService");
 const port = 8080;
 
 //Simple request time logger
@@ -19,16 +23,29 @@ app.get('/', (request, response) => {
 
 app.post('/login', (request, response) => {
     console.log(request.body);
-    response.status(200).json( { message: "Successfully logged in!", id: 1 });
+    validateLoginCredentials(request, response);
+    //response.status(200).json( { message: "Successfully logged in!", id: 1 });
 });
 app.post('/register', (request, response) => {
     console.log(request.body);
-    response.status(201).json({message: "Successfully logged in!", id: 1});
+    registerLoginCredentials(request, response);
+    //response.status(201).json({message: "Successfully logged in!", id: 1});
+});
+
+app.get('/account', (request, response) => {
+    console.log(request.query);
+    getAccountDetails(request, response);
 });
 
 app.post('/account', (request, response) => {
     console.log(request.body);
-    response.status(200).json({message: "Successfully logged in!", id: 1});
+    createAccountDetails(request, response);
+    //response.status(200).json({message: "Successfully logged in!", id: 1});
+});
+
+app.put('/account', (request, response) => {
+    console.log(request.body);
+    updateAccountDetails(request, response);
 });
 
 app.listen(port, () => {
